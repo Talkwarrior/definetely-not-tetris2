@@ -48,12 +48,12 @@ function gameA_load()
 	
 	--FIRST "nextpiece"-
 	-- custom code
-	nextpiece = 1 -- math.random(7)
+	nextpiece = math.random(7) --1 -- 
 	
-	checklinedensity(false) --false)
+	checklinedensity(false) 
 	game_addTetriA()
 	-- custom code
-	nextpiece = 1 --math.random(7)
+	nextpiece = math.random(7) --1 --
 	----------------
 end
 
@@ -292,8 +292,8 @@ function gameA_update(dt)
 		cuttingtimer = cuttingtimer + dt
 		if cuttingtimer >= lineclearduration then
 			--RANDOMIZE NEXT PIECE
-			-- custom code
-			nextpiece = 1 --math.random(7)
+			-- custom code before
+			nextpiece = math.random(7)
 			
 			cuttingtimer = lineclearduration
 			skipupdate = true
@@ -908,8 +908,8 @@ function checklinedensity(active) --checks all 18 lines and, if active == true, 
 		linesremoved = {}
 		
 		for i = 1, 18 do
-			-- custom code
-			if linearea[i] > 0 then-- 1024*linecleartreshold then
+			-- custom code before
+			if linearea[i] > 1024*linecleartreshold then --0 then-- 
 				if removedlines == false then
 					cuttingtimer = 0
 					removedlines = true
@@ -1209,7 +1209,7 @@ function endblockA() --handles failing, moving the current block to the end of t
 	else
 		game_addTetriA()
 		--RANDOMIZE NEXT PIECE
-		-- custom code
-		nextpiece = 1--math.random(7)
+		-- custom code before
+		nextpiece = math.random(7)
 	end
 end

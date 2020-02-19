@@ -53,7 +53,7 @@ function menu_draw()
 		love.graphics.print(">", 93*scale, 124*scale, 0, scale)
 	end
 	------------------------------------------
-	
+	-- singleplay menu
 	elseif gamestate == "menu" or gamestate == "highscoreentry" then
 		love.graphics.draw(gametype, 0, 0, 0, scale)
 		if selection > 2 then
@@ -90,7 +90,7 @@ function menu_draw()
 			end
 		end
 	----------------------------------------------
-	
+	-- multiplay
 	elseif gamestate == "multimenu" then
 		love.graphics.draw(mpmenu, 0, 0, 0, scale)
 		if selection > 2 then
