@@ -821,44 +821,14 @@ function love.keypressed( key, unicode )
 		multimenuKeyAction(key)
 			
 	elseif gamestate == "gameA" then
-		gameAKeyAction(key);
+		gameAKeyAction(key)
 
-	elseif gamestate == "gameB" or gamestate == "failingA" or gamestate == "failingB" then
+	elseif gamestate == "gameB" then
+		gameBKeyAction(key)
 
-		if controls.check("return", key) then
-			pause = not pause
+	elseif gamestate == "failingA" or gamestate == "failingB" then
+		failingKeyAction(key)
 
-			if pause == true then
-				if musicno < 4 then
-					love.audio.pause(music[musicno])
-				end
-				love.audio.stop(pausesound)
-				love.audio.play(pausesound)
-			else
-				if musicno < 4 then
-					love.audio.resume(music[musicno])
-				end
-			end
-		end
-		if gamestate == "gameA" or gamestate == "gameB" then
-			if controls.check("escape", key) then
-				oldtime = love.timer.getTime()
-				gamestate = "menu"
-			end
-			
-			if pause == false and (cuttingtimer == lineclearduration or gamestate == "gameB") then
-				--if key == "up" then --STOP ROTATION OF BLOCK (makes it too easy..)
-				--	tetribodies[counter]:setAngularVelocity(0)
-				--end
-				if controls.check("left", key) or controls.check("right", key) then
-					love.audio.stop(blockmove)
-					love.audio.play(blockmove)
-				elseif controls.check("rotateleft", key) or controls.check("rotateright", key) then
-					love.audio.stop(blockturn)
-					love.audio.play(blockturn)
-				end
-			end
-		end
 	elseif gamestate == "gameBmulti" and gamestarted == false then
 		if controls.check("escape", key) then
 			if not fullscreen then

@@ -129,7 +129,7 @@ function menuKeyAction(key)
 	end
 end
 
-function optionkeyAction(key)
+function optionKeyAction(key)
 	if controls.check("escape", key) then
 		if soundenabled then
 			love.audio.stop(musicoptions)
@@ -330,3 +330,55 @@ function gameAKeyAction(key)
 	end
 end
 
+function gameBKeyAction(key)
+	if controls.check("return", key) then
+			pause = not pause
+
+			if pause == true then
+				if musicno < 4 then
+					love.audio.pause(music[musicno])
+				end
+				love.audio.stop(pausesound)
+				love.audio.play(pausesound)
+			else
+				if musicno < 4 then
+					love.audio.resume(music[musicno])
+				end
+			end
+	elseif controls.check("escape", key) then
+		oldtime = love.timer.getTime()
+		gamestate = "menu"
+	end
+	
+	if pause == false  then
+		--if key == "up" then --STOP ROTATION OF BLOCK (makes it too easy..)
+		--	tetribodies[counter]:setAngularVelocity(0)
+		--end
+		if controls.check("left", key) or controls.check("right", key) then
+			love.audio.stop(blockmove)
+			love.audio.play(blockmove)
+		elseif controls.check("rotateleft", key) or controls.check("rotateright", key) then
+			love.audio.stop(blockturn)
+			love.audio.play(blockturn)
+		end
+	end
+		
+end
+
+function failingKeyAction(key)
+	if controls.check("return", key) then
+		pause = not pause
+
+		if pause == true then
+			if musicno < 4 then
+				love.audio.pause(music[musicno])
+			end
+			love.audio.stop(pausesound)
+			love.audio.play(pausesound)
+		else
+			if musicno < 4 then
+				love.audio.resume(music[musicno])
+			end
+		end
+	end
+end
